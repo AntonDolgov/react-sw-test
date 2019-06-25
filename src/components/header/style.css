@@ -1,9 +1,19 @@
 .header {
     height: 300px;
+    position: relative;
+}
+
+.header__bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
     background: url(../../images/backgrounds/bg-1.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    filter: brightness(0.8);
 }
 
 .header__nav {
@@ -140,18 +150,23 @@
 }
 
 .header__categories {
-    display: flex;
-    align-items: center;
+    position: relative;
+    width: 50px;
+    height: 50px;
 }
 
 .header__categories-item {
     display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
     margin-right: 4px;
 }
 
 .header__categories-btn {
     display: block;
     cursor: pointer;
+    position: absolute;
     width: 50px;
     height: 50px;
     border: none;
@@ -160,9 +175,61 @@
     background-size: cover;
     border-radius: 50%;
     border: 0px solid white;
+    z-index: 1;
+    transition: all 400ms ease-out;
+}
+
+.header__categories-btn.is-first {
+    left: 0;
+}
+
+.header__categories-btn.is-second {
+    left: 54px;
+}
+
+.header__categories-btn.is-third {
+    left: calc(54px * 2);
+}
+
+.header__categories-btn.is-fourth {
+    left: calc(54px * 3);
+}
+
+.header__categories-btn.is-selected {
+    z-index: 2;
+}
+
+.header--page-main .header__categories-btn:not(.is-selected) {
+    opacity: 0;
+    pointer-events: none;
+    transition: none;
+}
+
+.header--page-main .header__categories-btn.is-selected {
+    transform: scale(4) translate(19px, 17px);
+    left: 0;
+    border-radius: 1px;
 }
 
 .header__categories-btn:hover {
     border-width: 2px;
     transition: all 100ms ease-out;
+}
+
+.header__categories-title {
+    display: none;
+    position: absolute;
+    color: white;
+    top: calc(100% + 20px);
+    left: 0;
+    font-size: 35px;
+}
+
+.header__categories-btn:hover + .header__categories-title,
+.header__categories-btn.is-selected + .header__categories-title {
+    display: block;
+}
+
+.header.header--page-main .header__categories-title {
+    display: none; /* должна плавно уезжать вниз */
 }
