@@ -6,7 +6,8 @@ import HeaderNavList from './headerNavList';
 import HeaderCategories from './headerCategories';
 
 const Header = () => (
-    <header className="header header--page-list">
+    // header--page-list header--page-main
+    <header className="header header--page-item">
         <div className="header__bg"></div>
 
         <nav className="header__nav">
@@ -20,6 +21,12 @@ const Header = () => (
         <div className="header__main">
             <div className="container">
                 <HeaderCategories />
+
+                <div className="header__item">
+                    <button className="header__item-btn" type="button">Follow</button>
+
+                    <p className="header__item-name">Luke Skywalker</p>
+                </div>
             </div>
         </div>
     </header>

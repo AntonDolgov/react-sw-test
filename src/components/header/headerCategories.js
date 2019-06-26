@@ -34,9 +34,11 @@ export default class extends Component {
             }
         ];
 
+        const pageMain = true;
+
         const onMouseDown = ({currentTarget}) => {
             this.setState({
-                isButtonHover: true
+                isButtonHover: !pageMain
             });
         };
 
