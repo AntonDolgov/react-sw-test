@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Header from './../header';
+import HeaderContainer from '../../containers/headerContainer';
 
 import './style.css';
 
 const Layout = () => {
   return (
     <div className="layout">
-        <Header />
+      <HeaderContainer />
     </div>
   );
 };

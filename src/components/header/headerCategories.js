@@ -1,69 +1,80 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { categories } from '../../fixtures';
 
 export default class extends Component {
+    static propTypes = {
+        activeCategoryId: PropTypes.string.isRequired,
+        changeCategory: PropTypes.func.isRequired
+    };
+
     state = {
         isButtonHover: false
-    }
+    };
+
+    params = [
+        ...categories
+    ];
+
+    orders = this.params.map(({order, id, tabindex}) => {
+        return {
+            id,
+            order,
+            tabindex
+        };
+    });
+
+    onMouseEnter = ({currentTarget}) => {
+        const pageMain = false;
+
+        this.setState({
+            isButtonHover: !pageMain
+        });
+    };
+
+    onMouseLeave = ({currentTarget}) => {
+        this.setState({
+            isButtonHover: false
+        });
+    };
+
+    onClick = ({id, order, tabindex}) => () => {
+        const { activeCategoryId: previousId } = this.props;
+        const previousOrderObj = this.orders.find(({order, id: currentId}) => currentId === previousId);
+        const currentOrderObj = this.orders.find(({order, id: currentId}) => currentId === id);
+
+        // Предыдущему активному элементу устанавливаем значение order и tabindex текущего, и наоборот
+        currentOrderObj.order = previousOrderObj.order;
+        currentOrderObj.tabindex = previousOrderObj.tabindex;
+        previousOrderObj.order = order;
+        previousOrderObj.tabindex = tabindex;
+
+        this.props.changeCategory(id);
+    };
 
     render () {
-        const params = [
-            {
-                id: 'category-characters',
-                className: 'is-first',
-                isSelected: true,
-                value: 'Characters',
-                img: 'https://starwars-visualguide.com/assets/img/characters/1.jpg'
-            },
-            {
-                id: 'category-starsships',
-                className: 'is-second',
-                value: 'Starships',
-                img: 'https://starwars-visualguide.com/assets/img/starships/5.jpg'
-            },
-            {
-                id: 'category-vehicles',
-                className: 'is-third',
-                value: 'Vehicles',
-                img: 'https://starwars-visualguide.com/assets/img/vehicles/8.jpg'
-            },
-            {
-                id: 'category-planets',
-                className: 'is-fourth',
-                value: 'Planets',
-                img: 'https://starwars-visualguide.com/assets/img/planets/2.jpg'
-            }
-        ];
+        const { activeCategoryId } = this.props;
+        const { isButtonHover } = this.state;
+        const { onMouseEnter, onMouseLeave, onClick } = this;
 
-        const pageMain = true;
-
-        const onMouseDown = ({currentTarget}) => {
-            this.setState({
-                isButtonHover: !pageMain
-            });
-        };
-
-        const onMouseLeave = ({currentTarget}) => {
-            this.setState({
-                isButtonHover: false
-            });
-        };
-
-        const listItems = params.map(item => {
-            const { className, value, img, id, isSelected = false } = item;
-            const { isButtonHover } = this.state;
+        const listItems = this.params.map(item => {
+            const { value, img, id } = item;
             const btnId = `btn-${id}`;
-            const isBtnSelected = !isButtonHover && isSelected;
-            const btnClassName = `header__categories-btn ${className} ${isBtnSelected ? 'is-selected' : ''}`;
+            const isBtnSelected = !isButtonHover && activeCategoryId === id;
+            const btnClassName = `header__categories-btn ${isBtnSelected ? 'is-selected' : ''}`;
+            const { order, tabindex } = this.orders.find(({order, id: currentId}) => currentId === id);
 
             return (
                 <li className="header__categories-item" key={id}>
                     <div
                         id={btnId}
                         className={btnClassName}
-                        onMouseEnter={onMouseDown}
+                        onMouseEnter={onMouseEnter}
                         onMouseLeave={onMouseLeave}
-
+                        onClick={onClick({id, order, tabindex})}
+                        data-order={order}
                         style={{backgroundImage: `url(${img})`}}
+                        tabindex={tabindex}
                         title={value}>
                             {value}
                     </div>
