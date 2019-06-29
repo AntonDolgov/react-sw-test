@@ -74,7 +74,7 @@ export default class extends Component {
                         onClick={onClick({id, order, tabindex})}
                         data-order={order}
                         style={{backgroundImage: `url(${img})`}}
-                        tabindex={tabindex}
+                        tabIndex={tabindex}
                         title={value}>
                             {value}
                     </div>

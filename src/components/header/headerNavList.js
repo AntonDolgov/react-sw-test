@@ -1,6 +1,7 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
-export default (props) => {
+const HeaderNavList = (props) => {
     const { vertical = null} = props;
 
     return (
@@ -17,3 +18,9 @@ export default (props) => {
             </li>
         </ul>);
 };
+
+HeaderNavList.propTypes = {
+    vertical: propTypes.bool
+}
+
+export default HeaderNavList;

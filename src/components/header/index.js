@@ -12,9 +12,9 @@ const Header = (props) => (
 
         <nav className="header__nav">
             <div className="header__nav-container container">
-                <HeaderNavList {...props} />
+                <HeaderNavList />
 
-                <HeaderDropdown {...props} />
+                <HeaderDropdown />
             </div>
         </nav>
 
