@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 
 import GlossaryList from './glossaryList';
+import GlossaryPagination from './glossaryPagination';
 
 export default class extends Component {
 
@@ -11,6 +12,8 @@ export default class extends Component {
         return (
             <div className="page-glossary">
                 <div className="container">
+                    <GlossaryPagination />
+
                     <GlossaryList
                         selectedCategory={selectedCategory}
                         selectedImageCategory={selectedImageCategory}

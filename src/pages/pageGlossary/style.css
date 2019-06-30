@@ -1,5 +1,5 @@
 .page-glossary {
-    padding: 24px 0;
+    padding: 48px 0;
 }
 
 .page-glossary__list {
@@ -15,10 +15,10 @@
 
 .page-glossary__list-item {
     display: block;
-    width: calc(20% - 12px * 5 / 4);
+    width: calc(20% - 12px * 4 / 5);
     margin-right: 12px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 .page-glossary__list-item:nth-child(5n) {
@@ -47,4 +47,81 @@
     .page-glossary__list-item {
         width: auto;
     }
+}
+
+.page-glossary__pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.page-glossary__pagination-item {
+    display: block;
+    margin-left: 8px;
+}
+
+.page-glossary__pagination-link {
+    display: block;
+    position: relative;
+    padding: 8px;
+    box-shadow: 0 0 3px -1px grey;
+    color: #778899;
+    border-radius: 2px;
+}
+
+.page-glossary__pagination-link--active {
+    background: rgba(124, 208, 56, 0.1);
+    color: black;
+    pointer-events: none;
+}
+
+.page-glossary__pagination-link--disabled {
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.page-glossary__pagination-prev,
+.page-glossary__pagination-next {
+    color: transparent;
+}
+
+.page-glossary__pagination-prev:hover,
+.page-glossary__pagination-next:hover {
+    color: transparent;
+}
+
+.page-glossary__pagination-prev::after,
+.page-glossary__pagination-next::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 14px;
+    width: 5px;
+    height: 5px;
+    border: 1px solid #778899;
+    transition: border-color 200ms ease-out;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.page-glossary__pagination-prev:hover::after,
+.page-glossary__pagination-next:hover::after {
+    border-color: #7cd038;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.page-glossary__pagination-prev::after {
+    right: 6px;
+    transform: skew(0deg, 0deg) rotate(225deg);
+}
+
+.page-glossary__pagination-next::after {
+    left: 6px;
+    transform: skew(0deg, 0deg) rotate(45deg);
+}
+
+.page-glossary__pagination-dots {
+    display: inline-block;
+    margin-top: 8px;
 }

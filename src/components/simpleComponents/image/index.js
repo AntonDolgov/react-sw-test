@@ -51,8 +51,6 @@ export default class Image extends Component {
         const img = new Image();
         img.onload = this.onLoad();
         img.src = image;
-
-        console.log(image, img)
     }
 
     render () {
