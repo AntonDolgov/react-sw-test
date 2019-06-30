@@ -11,6 +11,40 @@
     outline: none;
 }
 
+.is-loading {
+    position: relative;
+    min-height: 100px;
+}
+
+.is-loading::before {
+    content: '';
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: white;
+}
+
+.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    border-radius: 100%;
+    animation: clockwise 0.75s steps(8, end) infinite;
+    box-shadow: 12px -12px 0 rgba(0, 0, 0, 0.125), 17px 0 0 -1px rgba(0, 0, 0, 0.25),
+        12px 12px 0 -2px rgba(0, 0, 0, 0.375), 0 17px 0 -3px rgba(0, 0, 0, 0.5),
+        -12px 12px 0 -4px rgba(0, 0, 0, 0.625), -17px 0 0 -5px rgba(0, 0, 0, 0.75),
+        -12px -12px 0 -6px rgba(0, 0, 0, 0.875), 0 -17px 0 -7px rgba(0, 0, 0, 1);
+}
+
 .container {
     max-width: 1032px;
     margin: 0 auto;

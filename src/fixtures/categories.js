@@ -7,7 +7,7 @@ export const categories = [
         img: 'https://starwars-visualguide.com/assets/img/characters/1.jpg'
     },
     {
-        id: 'category-starsships',
+        id: 'category-starships',
         order: 'is-second',
         tabindex: 2,
         value: 'Starships',
