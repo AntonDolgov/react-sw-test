@@ -18,5 +18,24 @@ export default Wrapped => props => {
         }
     })(activeCategoryId);
 
-    return <Wrapped selectedCategory={selectedCategory} {...props} />
+    const selectedImageCategory = (categoryId => {
+        switch (categoryId) {
+            case 'category-characters':
+                return 'characters';
+            case 'category-starships':
+                return 'starships';
+            case 'category-vehicles':
+                return 'vehicles';
+            case 'category-planets':
+                return 'planets';
+            default:
+                return 'people';
+        }
+    })(activeCategoryId);
+
+    return <Wrapped
+                selectedCategory={selectedCategory}
+                selectedImageCategory={selectedImageCategory}
+                {...props}
+            />
 }

@@ -1,20 +1,29 @@
 import React from 'react';
 import { withData } from '../../HOC';
+import ItemCard from '../../components/itemCard';
 
 const GlossaryList = props => {
     const { data, isLoading } = props;
-    const listClassName = isLoading ? 'is-loading' : '';
-    const listItem = (data => {
-            if (!data) {
-                return <li>The list is emplty</li>
-            }
+    const listClassName = `page-glossary__list ${isLoading ? 'is-loading' : ''}`;
 
-            return data.map(({id, name}) => (
-                    <li key={data.id}>
-                        {name}
-                    </li>)
-                )
-        })(data);
+    if (isLoading || !data) {
+        return (
+            <div className={listClassName}>
+                <div className="page-glossary__list-item">The list is emplty</div>
+            </div>
+        )
+    }
+
+    if (!data) console.error('There is no data! \nData: ', data);
+
+    const listItem = data.map(({ id, name, image }) => (
+        <li className="page-glossary__list-item" key={id}>
+            <ItemCard
+                image={image}
+                name={name}
+            />
+        </li>)
+    );
 
     return (
         <ul className={listClassName}>

@@ -1,3 +1,50 @@
 .page-glossary {
     padding: 24px 0;
 }
+
+.page-glossary__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media(max-width: 399px) {
+    .page-glossary__list {
+        display: block;
+    }
+}
+
+.page-glossary__list-item {
+    display: block;
+    width: calc(20% - 12px * 5 / 4);
+    margin-right: 12px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.page-glossary__list-item:nth-child(5n) {
+    margin-right: 0;
+}
+
+@media(max-width: 1099px) {
+    .page-glossary__list-item {
+        width: 25%;
+    }
+}
+
+@media(max-width: 1023px) {
+    .page-glossary__list-item {
+        width: 33.33%;
+    }
+}
+
+@media(max-width: 767px) {
+    .page-glossary__list-item {
+        width: 50%;
+    }
+}
+
+@media(max-width: 399px) {
+    .page-glossary__list-item {
+        width: auto;
+    }
+}

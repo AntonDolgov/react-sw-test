@@ -13,20 +13,29 @@ export default class SwapiService {
     return await res.json();
   };
 
-  getList = async category => {
-    const resource = await this.getResource(`/${category}/`);
+  getList = async ({ selectedCategory, selectedImageCategory }) => {
+    const resource = await this.getResource(`/${selectedCategory}/`);
 
     return resource.results
-        .map(this._transformData);
+        .map(this._transformData(selectedImageCategory));
   };
+
+  getImage = ({selectedImageCategory, id}) => {
+    return `${this._imageBase}/${selectedImageCategory}/${id}.jpg`
+  }
 
   _extractId = (item) => {
     const idRegExp = /\/([0-9]*)\/$/;
     return item.url.match(idRegExp)[1];
   };
 
-  _transformData = data => ({
-    id: this._extractId(data),
-    name: data.name
-  });
+  _transformData = selectedImageCategory => data => {
+    const id = this._extractId(data);
+
+    return ({
+      id,
+      name: data.name,
+      image: this.getImage({ selectedImageCategory, id })
+    })
+  };
 }

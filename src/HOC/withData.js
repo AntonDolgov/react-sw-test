@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Preloader from '../components/simpleComponents/preloader';
 
 export default View => class withData extends Component {
 
@@ -11,9 +10,9 @@ export default View => class withData extends Component {
 
     componentDidUpdate(prevProps) {
         const hasNewGetData = this.props.getData !== prevProps.getData;
-        const hasNewParams = this.props.params !== prevProps.params;
+        const hasNewCategory = this.props.selectedCategory !== prevProps.selectedCategory;
 
-        if (hasNewGetData || hasNewParams) {
+        if (hasNewGetData || hasNewCategory) {
             this.update();
         }
     }
@@ -23,14 +22,14 @@ export default View => class withData extends Component {
     }
 
     update() {
-        const { params } = this.props;
+        const { selectedCategory, selectedImageCategory } = this.props;
 
         this.setState( {
             loading: true,
             error: false
         });
 
-        this.props.getData(params)
+        this.props.getData({ selectedCategory, selectedImageCategory })
             .then(data => {
                 this.setState({
                     data,

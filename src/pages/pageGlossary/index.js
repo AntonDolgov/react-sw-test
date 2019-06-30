@@ -6,12 +6,16 @@ import GlossaryList from './glossaryList';
 export default class extends Component {
 
     render () {
-        const { selectedCategory, getData } = this.props;
+        const { selectedCategory, getData, selectedImageCategory } = this.props;
 
         return (
             <div className="page-glossary">
                 <div className="container">
-                    <GlossaryList params={selectedCategory} getData={getData}/>
+                    <GlossaryList
+                        selectedCategory={selectedCategory}
+                        selectedImageCategory={selectedImageCategory}
+                        getData={getData}
+                    />
                 </div>
             </div>
         );
