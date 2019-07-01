@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 
 const HeaderNavList = (props) => {
@@ -14,7 +15,7 @@ const HeaderNavList = (props) => {
                 <a href="#id" className="header__nav-link"><span className="header__nav-link-text">Luke Skywalker's info</span></a>
             </li>
             <li className="header__nav-item">
-                <a href="#id" className="header__nav-link"><span className="header__nav-link-text">Categories</span></a>
+                <Link to="/glossary" className="header__nav-link"><span className="header__nav-link-text">Categories</span></Link>
             </li>
         </ul>);
 };

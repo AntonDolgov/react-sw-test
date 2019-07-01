@@ -20,7 +20,7 @@ export default class SwapiService {
         .map(this._transformData(selectedImageCategory));
   };
 
-  getImage = ({selectedImageCategory, id}) => {
+  getImageURL = ({selectedImageCategory, id}) => {
     return `${this._imageBase}/${selectedImageCategory}/${id}.jpg`
   }
 
@@ -35,7 +35,13 @@ export default class SwapiService {
     return ({
       id,
       name: data.name,
-      image: this.getImage({ selectedImageCategory, id })
+      image: this.getImageURL({ selectedImageCategory, id })
     })
+  };
+
+  getPaginationLinks = async ({ selectedCategory }) => {
+    const resource = await this.getResource(`/${selectedCategory}/`);
+
+    return resource;
   };
 }

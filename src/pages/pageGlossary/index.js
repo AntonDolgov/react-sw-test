@@ -9,6 +9,9 @@ export default class extends Component {
     render () {
         const { selectedCategory, getData, selectedImageCategory } = this.props;
 
+        this.props.getPaginationLinks({ selectedCategory }).
+            then(res => console.log(res))
+
         return (
             <div className="page-glossary">
                 <div className="container">

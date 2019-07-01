@@ -15,6 +15,7 @@ class GlossaryContainer extends Component {
 }
 
 const mapSwapiMethodsToProps = swapiService => ({
+    ...swapiService,
     getData: swapiService.getList
 });
 const mapStateToProps = ({activeCategoryId}) => ({activeCategoryId});

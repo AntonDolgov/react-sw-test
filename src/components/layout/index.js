@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import HeaderContainer from '../../containers/headerContainer';
 import GlossaryContainer from '../../containers/glossaryContainer';
@@ -11,7 +12,7 @@ const Layout = () => {
       <HeaderContainer />
 
       <main className="main">
-        <GlossaryContainer />
+        <Route path="/glossary" component={GlossaryContainer}/>
       </main>
     </div>
   );

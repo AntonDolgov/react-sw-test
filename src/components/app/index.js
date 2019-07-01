@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { SwapiServiceProvider } from '../../context/swapi-service-context';
 import SwapiService from '../../services/swapi-service';
 
@@ -14,7 +15,9 @@ const App = () => {
   return (
     <Provider store={store}>
       <SwapiServiceProvider value={swapiService}>
-        <Layout />
+        <Router>
+          <Layout />
+        </Router>
       </SwapiServiceProvider>
     </Provider>
   );
